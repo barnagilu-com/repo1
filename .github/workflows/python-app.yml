@@ -14,17 +14,23 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout Source code
+      uses: actions/checkout@v4
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
-    - name: Install dependencies
+    - name: Install python dependencies
       run: |
+        echo "Current working directory is"
+        pwd
+        ls -la
         python -m pip install --upgrade pip
         pip install flake8 pytest
+        flake8 --version
+        pytest --version
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
