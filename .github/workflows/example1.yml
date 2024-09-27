@@ -1,0 +1,18 @@
+name: example-workflow1
+run-name: Example Workflow1
+
+# Run on every push
+
+on: [push]
+
+jobs:
+  job1:
+    name: My First Job
+    runs-on: ubuntu-latest
+    steps:
+    - name: My First Step
+      run: |
+        ls
+        pwd
+        echo "My First step is being executed"
+        
