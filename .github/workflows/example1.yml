@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: My First Step
       run: |
-        ls
+        ls -la
         pwd
         echo "My First step is being executed"
     - name: My second step
