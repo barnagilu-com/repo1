@@ -15,4 +15,13 @@ jobs:
         ls
         pwd
         echo "My First step is being executed"
+  job2:
+    name: My second job
+    runs-on: windows-latest
+    steps:
+    - name: My second step
+      run: |
+        dir
+        pwd
+        echo "My second step is being executed on Windows"
         
