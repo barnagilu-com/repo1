@@ -18,7 +18,7 @@ jobs:
     - name: My second step
       uses:  py-actions/py-dependency-install@v4
       with:
-        path: numpy
+        path: requirements.txt
       
   job2:
     name: My second job
