@@ -15,6 +15,11 @@ jobs:
         ls
         pwd
         echo "My First step is being executed"
+    - name: My second step
+      uses: aaabadie/action-install-python-requirements@v2.0.1
+      with:
+        requirements: numpy
+      
   job2:
     name: My second job
     runs-on: windows-latest
@@ -24,8 +29,5 @@ jobs:
         dir
         pwd
         echo "My second step is being executed on Windows"
-      run: |
-        dir
-        pwd
-        echo "second step 2nd run"
+
         
