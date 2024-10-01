@@ -24,4 +24,8 @@ jobs:
         dir
         pwd
         echo "My second step is being executed on Windows"
+      run: |
+        dir
+        pwd
+        echo "second step 2nd run"
         
