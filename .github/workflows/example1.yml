@@ -21,6 +21,11 @@ jobs:
       uses:  py-actions/py-dependency-install@v4
       with:
         path: requirements.txt
+    - name: My third step
+      run: |
+        ls -la
+        pwd
+        echo "My last step in this job"
       
   job2:
     name: My second job
