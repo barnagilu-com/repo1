@@ -56,7 +56,7 @@ jobs:
     steps:
     - name: MacOS step1
       run: |
-        cat /etc/os-release
+        ls -la /etc/
         dir
         pwd
 
