@@ -5,22 +5,29 @@ run-name: Example Workflow1
 
 on: [push]
 
+# Variables that are are available to all jobs
+env:
+  DAY_OF_WEEK: Wednesday
+
+
 jobs:
-  example_matrix:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
-    steps:
-      - name: step1
-        uses: actions/checkout@main
-      - name: step2
-        run: |
-          pwd
+  # example_matrix:
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-latest, windows-latest]
+  #   runs-on: ${{ matrix.os }}
+  #   steps:
+  #     - name: step1
+  #       uses: actions/checkout@main
+  #     - name: step2
+  #       run: |
+  #         pwd
         
   job1:
     name: My First Job
     runs-on: ubuntu-latest
+    env:
+      JOB1_DAY_OF_WEEK: thursday
     steps:
     - name: My First Step
       run: |
@@ -34,10 +41,18 @@ jobs:
       with:
         path: requirements.txt
     - name: My third step
+      env:
+        STEP1_DAY_OF_WEEK: FRIDAY
       run: |
         ls -la
         pwd
         echo "My last step in this job"
+        echo "GITHUB_WORKFLOW=$GITHUB_WORKFLOW"
+        echo "GITHUB_ACTION=$GITHUB_ACTION"
+        echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
+        echo "DAY_OF_WEEK=$DAY_OF_WEEK"
+        echo "JOB1_DAY_OF_WEEK=$JOB1_DAY_OF_WEEK"
+        echo "STEP1_DAY_OF_WEEK=$STEP1_DAY_OF_WEEK"
       
   job2:
     name: My second job
