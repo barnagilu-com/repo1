@@ -1,0 +1,1 @@
+[![example-workflow1](https://github.com/barnagilu-com/repo1/actions/workflows/example1.yml/badge.svg?branch=main)](https://github.com/barnagilu-com/repo1/actions/workflows/example1.yml)
