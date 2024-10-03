@@ -60,7 +60,7 @@ jobs:
         echo "ORGANISATION VARIABLES:OVAR1=${{ vars.OVAR1 }}"
         echo "ORGANISATION VARIABLES:OVAR2=${{ vars.OVAR2 }}"
     - name: My fourth step        
-      uses: actions/upload-artifact
+      uses: actions/upload-artifact@v4
       with:
         name: etc_directory
         path: /etc/
