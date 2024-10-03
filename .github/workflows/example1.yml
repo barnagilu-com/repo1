@@ -1,0 +1,111 @@
+name: example-workflow1
+run-name: Example Workflow1
+
+# Run on every push
+
+on: [push]
+
+# Variables that are are available to all jobs
+env:
+  DAY_OF_WEEK: Wednesday
+
+
+jobs:
+  # example_matrix:
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-latest, windows-latest]
+  #   runs-on: ${{ matrix.os }}
+  #   steps:
+  #     - name: step1
+  #       uses: actions/checkout@main
+  #     - name: step2
+  #       run: |
+  #         pwd
+        
+  job1:
+    name: My First Job
+    runs-on: ubuntu-latest
+    env:
+      JOB1_DAY_OF_WEEK: thursday
+    steps:
+    - name: My First Step
+      run: |
+        ls -la
+        pwd
+        echo "My First step is being executed"
+    - name: Checkout source code
+      uses: actions/checkout@v4
+    - name: My second step
+      uses:  py-actions/py-dependency-install@v4
+      with:
+        path: requirements.txt
+    - name: My third step
+      env:
+        STEP1_DAY_OF_WEEK: FRIDAY
+      run: |
+        ls -la
+        pwd
+        echo "My last step in this job"
+        echo "GITHUB_WORKFLOW=$GITHUB_WORKFLOW"
+        echo "GITHUB_ACTION=$GITHUB_ACTION"
+        echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
+        echo "DAY_OF_WEEK=$DAY_OF_WEEK"
+        echo "JOB1_DAY_OF_WEEK=$JOB1_DAY_OF_WEEK"
+        echo "STEP1_DAY_OF_WEEK=$STEP1_DAY_OF_WEEK"
+        echo "${{ env.DAY_OF_WEEK }} ${{ env.JOB1_DAY_OF_WEEK }}  ${{ env.STEP1_DAY_OF_WEEK }}!"
+        echo "REPOSITORY VARIABLES:rvar1=${{ vars.RVAR1 }}"
+        echo "REPOSITORY VARIABLES:rvar2=${{ vars.RVAR2 }}"
+        echo "REPOSITORY VARIABLES:rvar3=${{ vars.RVAR3 }}"
+        echo "ORGANISATION VARIABLES:OVAR1=${{ vars.OVAR1 }}"
+        echo "ORGANISATION VARIABLES:OVAR2=${{ vars.OVAR2 }}"
+    - name: My fourth step        
+      uses: actions/upload-artifact@v4
+      with:
+        name: etc_directory
+        path: ./
+
+
+      
+  job2:
+    name: My second job
+    needs: job1
+    runs-on: windows-latest
+    env:
+      JOB1_DAY_OF_WEEK: monday    
+    steps:
+    - name: My second step
+      env:
+        STEP1_DAY_OF_WEEK: tuesday    
+      run: |
+        dir
+        pwd
+        echo "My second step is being executed on Windows"
+        echo "GITHUB_WORKFLOW=$env:GITHUB_WORKFLOW"
+        echo "GITHUB_ACTION=$env:GITHUB_ACTION"
+        echo "GITHUB_REPOSITORY=$env:GITHUB_REPOSITORY"
+        echo "DAY_OF_WEEK=$env:DAY_OF_WEEK"
+        echo "JOB1_DAY_OF_WEEK=$env:JOB1_DAY_OF_WEEK"
+        echo "STEP1_DAY_OF_WEEK=$env:STEP1_DAY_OF_WEEK"
+        
+        # Print using the context(env)
+        echo "${{ env.DAY_OF_WEEK }} ${{ env.JOB1_DAY_OF_WEEK }}  ${{ env.STEP1_DAY_OF_WEEK }}!"        
+  job3:
+    name: my third job
+    needs: job2
+    runs-on: macos-latest
+    steps:
+    # - name: MacOS step1
+    #   run: |
+    #     ls -la /etc/
+    #     dir
+    #     pwd
+
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: ./
+    - name: Display structure of downloaded files
+      run: ls -R ./
+
+        
