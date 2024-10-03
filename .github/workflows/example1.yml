@@ -53,17 +53,34 @@ jobs:
         echo "DAY_OF_WEEK=$DAY_OF_WEEK"
         echo "JOB1_DAY_OF_WEEK=$JOB1_DAY_OF_WEEK"
         echo "STEP1_DAY_OF_WEEK=$STEP1_DAY_OF_WEEK"
+        
+        # Print using the context(env)
+        run: echo "${{ env.DAY_OF_WEEK }} ${{ env.JOB1_DAY_OF_WEEK }}  ${{ env.STEP1_DAY_OF_WEEK }}!"
+
       
   job2:
     name: My second job
     needs: job1
     runs-on: windows-latest
+    env:
+      JOB1_DAY_OF_WEEK: monday    
     steps:
     - name: My second step
+      env:
+        STEP1_DAY_OF_WEEK: tuesday    
       run: |
         dir
         pwd
         echo "My second step is being executed on Windows"
+        echo "GITHUB_WORKFLOW=$env:GITHUB_WORKFLOW"
+        echo "GITHUB_ACTION=$env:GITHUB_ACTION"
+        echo "GITHUB_REPOSITORY=$env:GITHUB_REPOSITORY"
+        echo "DAY_OF_WEEK=$env:DAY_OF_WEEK"
+        echo "JOB1_DAY_OF_WEEK=$env:JOB1_DAY_OF_WEEK"
+        echo "STEP1_DAY_OF_WEEK=$env:STEP1_DAY_OF_WEEK"
+        
+        # Print using the context(env)
+        run: echo "${{ env.DAY_OF_WEEK }} ${{ env.JOB1_DAY_OF_WEEK }}  ${{ env.STEP1_DAY_OF_WEEK }}!"        
   job3:
     name: my third job
     needs: job2
