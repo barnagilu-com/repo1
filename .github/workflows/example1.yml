@@ -95,11 +95,11 @@ jobs:
     needs: job2
     runs-on: macos-latest
     steps:
-    - name: MacOS step1
-      run: |
-        ls -la /etc/
-        dir
-        pwd
+    # - name: MacOS step1
+    #   run: |
+    #     ls -la /etc/
+    #     dir
+    #     pwd
 
     - name: Download artifacts
       uses: actions/download-artifact@v4
