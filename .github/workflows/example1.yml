@@ -59,6 +59,11 @@ jobs:
         echo "REPOSITORY VARIABLES:rvar3=${{ vars.RVAR3 }}"
         echo "ORGANISATION VARIABLES:OVAR1=${{ vars.OVAR1 }}"
         echo "ORGANISATION VARIABLES:OVAR2=${{ vars.OVAR2 }}"
+    - name: My fourth step        
+      uses: actions/upload-artifact
+      with:
+        name: etc_directory
+        path: /etc/
 
 
       
