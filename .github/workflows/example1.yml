@@ -53,9 +53,7 @@ jobs:
         echo "DAY_OF_WEEK=$DAY_OF_WEEK"
         echo "JOB1_DAY_OF_WEEK=$JOB1_DAY_OF_WEEK"
         echo "STEP1_DAY_OF_WEEK=$STEP1_DAY_OF_WEEK"
-        
-        # Print using the context(env)
-        run: echo "${{ env.DAY_OF_WEEK }} ${{ env.JOB1_DAY_OF_WEEK }}  ${{ env.STEP1_DAY_OF_WEEK }}!"
+        echo "${{ env.DAY_OF_WEEK }} ${{ env.JOB1_DAY_OF_WEEK }}  ${{ env.STEP1_DAY_OF_WEEK }}!"
 
       
   job2:
@@ -80,7 +78,7 @@ jobs:
         echo "STEP1_DAY_OF_WEEK=$env:STEP1_DAY_OF_WEEK"
         
         # Print using the context(env)
-        run: echo "${{ env.DAY_OF_WEEK }} ${{ env.JOB1_DAY_OF_WEEK }}  ${{ env.STEP1_DAY_OF_WEEK }}!"        
+        echo "${{ env.DAY_OF_WEEK }} ${{ env.JOB1_DAY_OF_WEEK }}  ${{ env.STEP1_DAY_OF_WEEK }}!"        
   job3:
     name: my third job
     needs: job2
