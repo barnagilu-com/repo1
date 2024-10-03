@@ -16,7 +16,6 @@ jobs:
         uses: actions/checkout@main
       - name: step2
         run: |
-          ls -la
           pwd
         
   job1:
@@ -50,5 +49,16 @@ jobs:
         dir
         pwd
         echo "My second step is being executed on Windows"
+  job3:
+    name: my third job
+    needs: job2
+    runs-on: macos-latest
+    steps:
+    - name: MacOS step1
+      run: |
+        cat /etc/os-release
+        dir
+        pwd
+
 
         
