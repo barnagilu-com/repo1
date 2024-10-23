@@ -59,6 +59,7 @@ jobs:
         echo "REPOSITORY VARIABLES:rvar3=${{ vars.RVAR3 }}"
         echo "ORGANISATION VARIABLES:OVAR1=${{ vars.OVAR1 }}"
         echo "ORGANISATION VARIABLES:OVAR2=${{ vars.OVAR2 }}"
+        echo "GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
     - name: My fourth step        
       uses: actions/upload-artifact@v4
       with:
