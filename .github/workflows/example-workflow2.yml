@@ -5,6 +5,7 @@ jobs:
   job1:
     name: job1
     runs-on: ubuntu-latest
+    environment: ${{ vars.QA }}
     steps:
     - name: My First Step
       run: |
@@ -14,5 +15,4 @@ jobs:
         echo "REPOSITORY VARIABLES:RVAR1=${{ vars.RVAR1 }}"
         echo "REPOSITORY VARIABLES:RVAR2=${{ vars.RVAR2 }}"
         echo "REPOSITORY VARIABLES:RVAR3=${{ vars.RVAR3 }}"
-        
         echo "ENVIRONMNET QA VARIABLES:RVAR3=${{ vars.env1 }}"
