@@ -1,0 +1,5 @@
+# Install Python packages
+numpy
+pandas
+scipy
+matplotlib
